@@ -406,7 +406,7 @@ class HierarchicalNSW : public AlgorithmInterface<dist_t> {
 
         while (!candidate_set.empty()) {
             std::pair<dist_t, tableint> current_node_pair = candidate_set.top();
-            char *currObj2 = (getDataByInternalId(current_node_pair.second));
+            
             std::cout << "testing: " << current_node_pair.second << std::endl;
 
             if (top_candidates.size() > ef) {
