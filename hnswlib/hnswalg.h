@@ -406,12 +406,13 @@ class HierarchicalNSW : public AlgorithmInterface<dist_t> {
 
         while (!candidate_set.empty()) {
             std::pair<dist_t, tableint> current_node_pair = candidate_set.top();
-            std::cout << "testing: " << current_node_pair.second << std::endl;
+            char *currObj2 = (getDataByInternalId(current_node_pair.second));
 
             if (top_candidates.size() > ef) {
                 std::cout << "BREAK " << current_node_pair.second << std::endl;
                 break;
             }
+
             candidate_set.pop();
 
             tableint current_node_id = current_node_pair.second;
@@ -458,7 +459,6 @@ class HierarchicalNSW : public AlgorithmInterface<dist_t> {
 
                     if (top_candidates.size() < ef) {
                         candidate_set.emplace(-candidatePair.first, candidatePair.second);
-                        std::cout << "put_on_set: " << candidatePair.second << std::endl;
 #ifdef USE_SSE
                         _mm_prefetch(data_level0_memory_ + candidate_set.top().second * size_data_per_element_ +
                                          offsetLevel0_,  ///////////
